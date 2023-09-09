@@ -19,6 +19,22 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+        smart_gresc: smart_gresc {
+            compatible = "zmk,behavior-mod-morph";
+            label = "smart_gresc";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&sub_gresc>;
+            mods = <(MOD_LGUI|MOD_LSFT>);
+            keep-mods = <(MOD_LGUI|MOD_LSFT)>;
+        };
+        sub_gresc: sub_gresc {
+            compatible = "zmk,behavior-mod-morph";
+            label = "sub_gresc";
+            #binding-cells = <0>;
+            bindings = <&kp GRAVE>, <&kp ESC>;
+            mods = <(MOD_LALT|MOD_LCTL>);
+            keep-mods = <(MOD_LALT|MOD_LCTL)>;
+        };
     };
     keymap {
         compatible = "zmk,keymap";
