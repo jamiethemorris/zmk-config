@@ -36,6 +36,16 @@
             keep-mods = <(MOD_LALT|MOD_LCTL)>;
         };
     };
+    macros {
+        hyper: hyper {
+            label = "hyper";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LSHFT &kp LCTRL &kp LALT &kp LGUI>
+                ;
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
 
@@ -49,12 +59,12 @@
             bindings = <
 &smart_gresc &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                      &kp N6 &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
 &lt 3 TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                       &kp Y  &kp U     &kp I     &kp O    &kp P    &th EQUAL MINUS
-&kp CAPS   &kp A  &kp S    &kp D    &kp F     &kp G                       &kp H  &kp J     &kp K     &kp L    &kp SEMI &kp SQT
-&kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B  &kp C_MUTE &none     &kp N  &kp M     &kp COMMA &kp DOT  &kp FSLH &kp DEL
+&hyper      &kp A  &kp S    &kp D    &kp F     &kp G                       &kp H  &kp J     &kp K     &kp L    &kp SEMI &kp SQT
+&kp LSHFT   &kp Z  &kp X    &kp C    &kp V     &kp B  &kp C_MUTE &none     &kp N  &kp M     &kp COMMA &kp DOT  &kp FSLH &kp DEL
                  &kp LCTRL &kp LALT &kp LGUI &kp SPACE &lt 1 ENTER  &kp ENTER &lt 2 SPACE  &kp BSLH &kp LBKT  &kp RBKT
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp COMMA DOT>;
         };
 
         lower_layer {
@@ -73,7 +83,7 @@
                     &trans    &trans      &trans    &trans    &trans   &trans &trans    &trans   &trans          &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp COMMA DOT>;
         };
 
         raise_layer {
@@ -91,7 +101,7 @@
                         &trans       &trans       &trans       &trans  &trans   &trans  &trans    &trans    &trans   &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp PG_UP PG_DN>;
         };
         numpad_layer {
 // ------------------------------------------------------------------------------------------------------------
@@ -108,7 +118,7 @@
                         &trans       &trans       &trans       &trans  &trans   &trans  &trans    &kp KP_ENTER &kp KP_ENTER &kp KP_ENTER
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp COMMA DOT>;
         };
     };
 };
