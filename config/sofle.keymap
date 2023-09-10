@@ -65,6 +65,16 @@
             global-quick-tap;
             bindings = <&mo>, <&kp>;
         };
+        tnpt: tab_numpad_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAB_NUMPAD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <170>;
+            quick-tap-ms = <125>;
+            global-quick-tap;
+            bindings = <&mo>, <&kp>;
+        };
     };
     macros {
         hpr: hyper {
@@ -135,10 +145,10 @@
 
         default_layer {
             bindings = <
-&smart_gresc &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                      &kp N6 &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
-&lt 3 TAB   &kp Q  &kp W    &kp E    &kp R     &kp T                       &kp Y  &kp U     &kp I     &kp O    &kp P    &th EQUAL MINUS
-&td0    &kp A  &kp S    &kp D    &kp F     &kp G                         &kp H  &kp J     &kp K     &kp L    &kp SEMI &kp SQT
-&kp LSHFT   &kp Z  &kp X    &kp C    &kp V     &kp B  &kp C_MUTE &none     &kp N  &kp M     &kp COMMA &kp DOT  &kp FSLH &kp DEL
+&smart_gresc &kp N1 &kp N2 &kp N3   &kp N4    &kp N5                      &kp N6 &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
+&tnpt NUM TAB &kp Q &kp W  &kp E    &kp R     &kp T                       &kp Y  &kp U     &kp I     &kp O    &kp P    &th EQUAL MINUS
+&td0      &kp A  &kp S     &kp D    &kp F     &kp G                       &kp H  &kp J     &kp K     &kp L    &kp SEMI &kp SQT
+&kp LSHFT &kp Z  &kp X     &kp C    &kp V     &kp B  &kp C_MUTE &none     &kp N  &kp M     &kp COMMA &kp DOT  &kp FSLH &kp DEL
                  &kp LCTRL &kp LALT &kp LGUI &kp SPACE &slt LOWER ENTER  &kp ENTER &slt RAISE SPACE  &kp BSLH &kp LBKT  &kp RBKT
             >;
 
