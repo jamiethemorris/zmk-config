@@ -66,10 +66,10 @@
 // |       |  =  |  -  |  +   |  {   |  }   |        |  |       |  [   |  ]    |  ;    |  :   |   \   |       |
 //               |     |      |      |      |        |  |       |      |       |       |      |
             bindings = <
-&kp ESC   &kp F1    &kp F2    &kp F3      &kp F4    &kp F5                    &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &kp F11
-&kp GRAVE &trans    &trans    &trans      &trans    &trans                    &trans    &trans    &trans    &trans    &trans    &kp F12
-&trans    &trans    &kp M     &trans      &trans    &trans                    &trans    &trans    &trans    &trans    &trans    &trans    
-&trans    &trans    &kp BSLH  &kp KP_PLUS &kp LBRC  &kp RBRC  &trans   &trans &kp LBKT  &kp RBKT  &trans    &trans    &trans    &trans   
+&kp GRAVE &kp F1    &kp F2    &kp F3      &kp F4    &kp F5                    &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &kp F11
+&trans    &trans    &trans    &trans      &trans    &kp P                     &trans    &trans    &trans    &trans    &trans    &kp F12
+&trans    &trans    &kp M     &kp DEL     &kp COMMA &kp DOT                   &trans    &trans    &trans    &trans    &trans    &trans    
+&trans    &trans    &kp BSLH  &trans      &kp LBRC  &kp RBRC  &trans   &trans &kp LBKT  &kp RBKT  &trans    &trans    &trans    &trans   
                     &trans    &trans      &trans    &trans    &trans   &trans &trans    &trans   &trans          &trans
             >;
 
