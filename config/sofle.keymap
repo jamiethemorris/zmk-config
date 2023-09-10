@@ -50,8 +50,8 @@
             compatible = "zmk,behavior-hold-tap";
             label = "SPACE_LAYER_TAP";
             #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <170>; 
+            flavor = "balanced";
+            tapping-term-ms = <200>; 
             quick-tap-ms = <125>;
             global-quick-tap;
             bindings = <&mo>, <&kp>;
