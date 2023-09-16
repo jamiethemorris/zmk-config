@@ -40,6 +40,14 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+        pwr_tap: power_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "POWER_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <170>;
+            bindings = <&pwr>, <&iterm>;
+        };
         smart_gresc: smart_gresc {
             compatible = "zmk,behavior-mod-morph";
             label = "smart_gresc";
@@ -75,6 +83,13 @@
             quick-tap-ms = <135>;
             global-quick-tap;
             bindings = <&mo>, <&kp>;
+        };
+        hyprtap: hyper_tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            label = "HYPER_TAP_DANCE";
+            #binding-cells = <0>;
+            tapping-term-ms = <170>;
+            bindings = <&hpr>, <&pwr_tap 0 0>;
         };
     };
     macros {
@@ -115,7 +130,7 @@
             label = "macbck";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
+            wait-ms = <10>;
             bindings
                 = <&macro_press &kp LGUI>
                 , <&macro_tap &kp LBKT>
@@ -126,19 +141,76 @@
             label = "macfwd";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
+            wait-ms = <10>;
             bindings
                 = <&macro_press &kp LGUI>
                 , <&macro_tap &kp RBKT>
                 , <&macro_release &kp LGUI>
                 ;
         };
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_0";
+        iterm: iterm {
+            label = "iterm";
+            compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            tapping-term-ms = <170>;
-            bindings = <&hpr>, <&pwr>;
+            wait-ms = <0>;
+            bindings
+                = <&macro_press &kp LSHFT &kp LCTRL &kp LALT &kp LGUI>
+                , <&macro_tap &kp T>
+                , <&macro_release &kp LSHFT &kp LCTRL &kp LALT &kp LGUI>
+                ;
+        };
+        unsolo: unsolo {
+            label = "unsolo";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings
+                = <&macro_press &kp LCTRL &kp LALT &kp LGUI>
+                , <&macro_tap &kp S>
+                , <&macro_release &kp LCTRL &kp LALT &kp LGUI>
+                ;
+        };
+        dbg: vscode_debug {
+            label = "vscode_debug";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings
+                = <&macro_tap &kp F5>
+                ;
+        };
+        rdbg: restart_debug {
+            label = "restart_debug";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings
+                = <&macro_press &kp LSHFT &kp LGUI>
+                , <&macro_tap &kp F5>
+                , <&macro_release &kp LSHFT &kp LGUI>
+                ;
+        };
+        sdbg: stop_debug {
+            label = "stop_debug";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp F5>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+        vsterm: vscode_terminal {
+            label = "vscode_terminal";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp GRAVE>
+                , <&macro_release &kp LCTRL>
+                ;
         };
     };
     keymap {
@@ -148,7 +220,7 @@
             bindings = <
 &smart_gresc &kp N1 &kp N2 &kp N3   &kp N4    &kp N5                      &kp N6 &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
 &tnpt NUM TAB &kp Q &kp W  &kp E    &kp R     &kp T                       &kp Y  &kp U     &kp I     &kp O    &kp P    &th EQUAL MINUS
-&td0      &kp A  &kp S     &kp D    &kp F     &kp G                       &kp H  &kp J     &kp K     &kp L    &kp SEMI &kp SQT
+&hyprtap  &kp A  &kp S     &kp D    &kp F     &kp G                       &kp H  &kp J     &kp K     &kp L    &kp SEMI &kp SQT
 &kp LSHFT &kp Z  &kp X     &kp C    &kp V     &kp B  &kp C_MUTE &to LOGIC &kp N  &kp M     &kp COMMA &kp DOT  &kp FSLH &kp DEL
                  &kp LCTRL &kp LALT &kp LGUI &kp SPACE &slt LOWER ENTER  &kp ENTER &slt RAISE SPACE  &kp BSLH &kp LBKT  &kp RBKT
             >;
@@ -192,7 +264,7 @@
             bindings = <
 &kp GRAVE &kp F1    &kp F2    &kp F3      &kp F4    &kp F5                    &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &kp F11
 &trans    &trans    &trans    &trans      &trans    &kp P                     &trans    &trans    &trans    &trans    &trans    &kp F12
-&trans    &trans    &kp M     &kp DEL     &kp COMMA &kp DOT                   &trans    &trans    &trans    &trans    &trans    &trans    
+&trans    &unsolo   &kp M     &kp DEL     &kp COMMA &kp DOT                   &trans    &trans    &trans    &trans    &trans    &trans    
 &trans    &trans    &kp BSLH  &trans      &kp LBRC  &kp RBRC  &trans   &trans &kp LBKT  &kp RBKT  &trans    &trans    &trans    &trans   
                     &trans    &trans      &trans    &trans    &trans   &trans &trans    &to MAC   &to WIN  &to GAME
             >;
@@ -202,9 +274,9 @@
 
         raise_layer {
             bindings = <
-&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &trans    &trans    &trans   &trans    &trans  &kp DEL
-&trans     &trans       &trans       &kp K_CMENU  &trans       &trans                   &trans    &macbck  &kp UP   &macfwd   &trans  &trans
-&trans     &trans       &trans       &trans       &trans       &kp PG_UP                &trans    &kp LEFT  &kp DOWN &kp RIGHT &trans  &trans   
+&trans     &kp F1       &kp F2       &kp F3       &kp F4       &kp F5                   &kp F6    &kp F7    &kp F8   &kp F9    &kp F10 &kp DEL
+&trans     &trans       &trans       &trans       &trans       &vsterm                  &trans    &macbck   &kp UP   &macfwd   &trans  &trans
+&trans     &trans       &sdbg        &dbg         &rdbg        &kp PG_UP                &trans    &kp LEFT  &kp DOWN &kp RIGHT &trans  &trans   
 &trans     &trans       &trans       &trans       &trans       &kp PG_DN &trans &trans  &trans    &kp F13   &trans   &trans    &trans  &trans
                         &trans       &trans       &trans       &trans  &trans   &trans  &trans    &trans    &trans   &trans
             >;
