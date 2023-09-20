@@ -8,6 +8,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/mouse.h>
 
 #define MAC     0
 #define WIN     1
@@ -16,6 +17,7 @@
 #define LOWER   4
 #define RAISE   5
 #define NUM     6
+#define MOUSE   7
 
 
 &left_encoder {
@@ -26,11 +28,50 @@
     steps = <80>;
 };
 
+&mmv {
+    time-to-max-speed-ms = <500>;
+    acceleration-exponent=<1>;
+    delay-ms = <0>; 
+};
+
+&mwh {
+    acceleration-exponent=<0>;
+    time-to-max-speed-ms = <1>;
+    delay-ms = <0>; 
+};
+
+#define U_MOUSE_MOVE_MAX 3250
+#define U_MOUSE_SCROLL_MAX 50
+
+#undef MOVE_UP
+#undef MOVE_DOWN
+#undef MOVE_LEFT
+#undef MOVE_RIGHT
+#define MOVE_UP MOVE_VERT(-U_MOUSE_MOVE_MAX)
+#define MOVE_DOWN MOVE_VERT(U_MOUSE_MOVE_MAX)
+#define MOVE_LEFT MOVE_HOR(-U_MOUSE_MOVE_MAX)
+#define MOVE_RIGHT MOVE_HOR(U_MOUSE_MOVE_MAX)
+
+#undef SCROLL_UP
+#undef SCROLL_DOWN
+#undef SCROLL_LEFT
+#undef SCROLL_RIGHT
+#define SCROLL_UP SCROLL_VERT(U_MOUSE_SCROLL_MAX)
+#define SCROLL_DOWN SCROLL_VERT(-U_MOUSE_SCROLL_MAX)
+#define SCROLL_LEFT SCROLL_HOR(-U_MOUSE_SCROLL_MAX)
+#define SCROLL_RIGHT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
+
 / {
     sensors {
         triggers-per-rotation = <20>;
     };
     behaviors {
+        rot_mwh: behavior_sensor_rotate_kp {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            label = "ENC_MWH";
+            #sensor-binding-cells = <2>;
+            bindings = <&mwh>, <&mwh>;
+        };
         th: taphold {
             compatible = "zmk,behavior-hold-tap";
             label = "TAP HOLD";
@@ -217,17 +258,19 @@
         compatible = "zmk,keymap";
 
         default_layer {
+            label = "mac";
             bindings = <
 &smart_gresc &kp N1 &kp N2 &kp N3   &kp N4    &kp N5                      &kp N6 &kp N7    &kp N8    &kp N9   &kp N0   &kp BSPC
 &tnpt NUM TAB &kp Q &kp W  &kp E    &kp R     &kp T                       &kp Y  &kp U     &kp I     &kp O    &kp P    &th EQUAL MINUS
 &hyprtap  &kp A  &kp S     &kp D    &kp F     &kp G                       &kp H  &kp J     &kp K     &kp L    &kp SEMI &kp SQT
 &kp LSHFT &kp Z  &kp X     &kp C    &kp V     &kp B  &kp C_MUTE &to LOGIC &kp N  &kp M     &kp COMMA &kp DOT  &kp FSLH &kp DEL
-                 &kp LCTRL &kp LALT &kp LGUI &kp SPACE &slt LOWER ENTER  &kp ENTER &slt RAISE SPACE  &kp BSLH &kp LBKT  &kp RBKT
+                 &kp LCTRL &kp LALT &kp LGUI &kp SPACE &slt LOWER ENTER  &slt MOUSE ENTER &slt RAISE SPACE  &kp BSLH &kp LBKT  &kp RBKT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp DOT COMMA>;
         };
         windows_layer {
+            label = "win";
             bindings = <
 &trans    &trans    &trans    &trans    &trans    &trans                      &trans    &trans   &trans   &trans    &trans  &trans
 &trans    &trans    &trans    &trans    &trans    &trans                      &trans    &trans   &trans   &trans    &trans  &trans
@@ -239,6 +282,7 @@
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
         gaming_layer {
+            label = "game";
             bindings = <
 &trans    &trans    &trans    &trans    &trans    &trans                      &trans    &trans   &trans   &trans    &trans  &trans
 &trans    &trans    &trans    &trans    &trans    &trans                      &trans    &trans   &trans   &trans    &trans  &trans
@@ -261,6 +305,7 @@
             sensor-bindings = <&inc_dec_kp DOT COMMA &inc_dec_kp DOT COMMA>;
         };
         lower_layer {
+            label = "lower";
             bindings = <
 &kp GRAVE &kp F1    &kp F2    &kp F3      &kp F4    &kp F5                    &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &kp F11
 &trans    &trans    &trans    &trans      &trans    &kp P                     &trans    &trans    &trans    &trans    &trans    &kp F12
@@ -273,6 +318,7 @@
         };
 
         raise_layer {
+            label = "raise";
             bindings = <
 &trans     &kp F1       &kp F2       &kp F3       &kp F4       &kp F5                   &kp F6    &kp F7    &kp F8   &kp F9    &kp F10 &kp DEL
 &trans     &trans       &trans       &trans       &trans       &vsterm                  &trans    &macbck   &kp UP   &macfwd   &trans  &trans
@@ -284,6 +330,7 @@
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
         numpad_layer {
+            label = "num";
             bindings = <
 &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &kp HOME  &kp N7    &kp N8   &kp N9    &kp KP_NUM    &trans
 &trans     &trans       &trans       &trans       &trans       &trans                   &kp END   &kp N4    &kp N5   &kp N6    &kp KP_PLUS   &trans
@@ -294,6 +341,20 @@
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+        mouse_layer {
+            label = "mouse";
+            bindings = <
+&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &trans    &trans          &trans          &trans           &trans        &trans    
+&trans     &trans       &trans       &trans       &trans       &trans                   &trans    &macbck         &mmv MOVE_UP    &macfwd          &trans        &trans    
+&trans     &trans       &trans       &trans       &trans       &trans                   &mkp LCLK &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp RCLK     &trans    
+&trans     &trans       &trans       &trans       &trans       &trans  &trans  &trans   &trans    &trans          &trans          &trans           &trans        &trans    
+                        &trans       &trans       &trans       &trans  &trans   &trans  &trans    &trans   &trans 
+                            &trans        
+                        
+            >;
+
+            sensor-bindings = <&rot_mwh SCROLL_UP SCROLL_DOWN &rot_mwh SCROLL_UP SCROLL_DOWN>;
         };
     };
 };
