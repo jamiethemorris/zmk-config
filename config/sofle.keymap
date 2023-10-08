@@ -383,8 +383,8 @@
             bindings = <
 &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &kp HOME  &kp N7    &kp N8   &kp N9    &kp KP_NUM    &trans
 &trans     &trans       &trans       &ext_power EP_OFF &rgb_ug RGB_OFF &ext_power EP_ON &kp END   &kp N4    &kp N5   &kp N6    &kp KP_PLUS   &trans
-&trans     &trans       &trans       &trans       &rgb_ug RGB_ON &trans                 &kp PG_UP &kp N1    &kp N2   &kp N3    &kp KP_ENTER  &trans   
-&trans     &trans       &trans       &trans       &trans       &trans  &trans  &trans   &trans    &kp PG_DN &kp N0   &kp N0    &kp DOT       &kp FSLH
+&trans     &trans       &trans       &trans       &rgb_ug RGB_ON &trans                 &kp PG_UP &kp N1    &kp N2   &kp N3    &kp STAR      &trans   
+&trans     &trans       &trans       &trans       &trans       &trans  &trans  &trans   &kp PG_DN &kp N0    &kp N0   &kp DOT   &kp FSLH      &trans
                         &trans       &trans       &trans       &trans  &trans   &trans  &trans    &kp KP_ENTER &kp KP_ENTER &kp KP_ENTER
                         
             >;
