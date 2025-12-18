@@ -386,7 +386,7 @@
 &trans          &trans    &trans    &trans      &trans    &kp P                     &trans    &trans    &trans    &trans    &trans    &kp F12
 &trans          &unsolo   &kp M     &kp DEL     &kp COMMA &kp DOT                   &trans    &trans    &trans    &trans    &trans    &trans    
 &cmt LSHFT SEMI &trans    &kp BSLH  &trans      &kp LBRC  &kp RBRC  &trans   &trans &kp LBKT  &kp RBKT  &trans    &trans    &trans    &trans   
-                          &trans    &trans      &trans    &trans    &trans   &trans &trans    &to MAC   &to WIN  &to GAME
+                          &trans    &trans      &trans    &trans    &trans   &trans &trans    &trans    &trans    &trans
             >;
 
             sensor-bindings =
