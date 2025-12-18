@@ -39,12 +39,6 @@
     };
 
     behaviors {
-        rot_mwh: behavior_sensor_rotate_kp {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            label = "ENC_MWH";
-            #sensor-binding-cells = <2>;
-            bindings = <&mwh>, <&mwh>;
-        };
         th: taphold {
             compatible = "zmk,behavior-hold-tap";
             label = "TAP HOLD";
