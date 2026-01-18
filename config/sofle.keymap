@@ -438,7 +438,7 @@
 &kp TAB       &kp Q   &kp W         &kp E        &kp R         &kp T                                          &kp Y         &kp U           &kp I        &kp O         &kp P     &th EQUAL MINUS
 &hyprtap      &kp A   &cmt LCTRL S  &cmt LALT D  &cmt LGUI F   &kp G                                          &kp H         &cmt LGUI J     &cmt LALT K  &cmt LCTRL L  &kp SEMI  &kp SQT
 &kp LSHFT     &kp Z   &kp X         &kp C        &clmt MMOD V  &glmt MMOD B     &kp C_MUTE      &to 1         &kp N         &kp M           &kp COMMA    &kp DOT       &kp FSLH  &kp BSLH
-                      &kp LCTRL     &kp LALT     &kp LGUI      &cmt LGUI SPACE  &slt 2 ENTER    &slt 2 ENTER  &slt 3 SPACE  &calibrateview  &kp LBKT     &kp RBKT
+                      &kp LCTRL     &kp LALT     &kp LGUI      &cmt LGUI SPACE  &slt LOWER ENTER    &slt LOWER ENTER  &slt RAISE SPACE  &calibrateview  &kp LBKT     &kp RBKT
             >;
 
             sensor-bindings =
@@ -486,7 +486,7 @@
 &trans          &trans    &trans    &trans      &trans    &kp P                     &trans    &trans    &trans    &trans    &trans    &kp F12
 &trans          &unsolo   &kp M     &kp DEL     &kp COMMA &kp DOT                   &trans    &trans    &trans    &trans    &trans    &trans    
 &cmt LSHFT SEMI &trans    &kp BSLH  &trans      &kp LBRC  &kp RBRC  &trans   &trans &kp LBKT  &kp RBKT  &trans    &trans    &trans    &trans   
-                          &trans    &trans      &trans    &trans    &trans   &trans &trans    &to 0     &to 2     &trans
+                          &trans    &trans      &trans    &trans    &trans   &trans &trans    &to 0     &to GAME     &trans
             >;
 
             sensor-bindings =
