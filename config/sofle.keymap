@@ -1,4 +1,4 @@
-/*
+    /*
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
@@ -19,11 +19,12 @@
 
 #define BASE 0
 #define LOGIC 1
-#define LOWER 2
-#define RAISE 3
-#define ADJUST 4
-#define MMOD 5
-#define WMOD 6
+#define GAME 2
+#define LOWER 3
+#define RAISE 4
+#define ADJUST 5
+#define MMOD 6
+#define WMOD 7
 
 / {
     // Activate ADJUST layer by pressing raise and lower
@@ -461,15 +462,39 @@
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
+        game_layer {
+            label = "game";
+            display-name = "game";
+            bindings = <
+&trans    &trans    &trans    &trans    &trans    &trans                      &trans    &trans   &trans   &trans    &trans  &trans
+&trans    &trans    &trans    &trans    &trans    &trans                      &trans    &trans   &trans   &trans    &trans  &trans
+&trans    &trans    &trans    &trans    &trans    &trans                      &trans    &trans   &trans   &trans    &trans  &trans
+&trans    &trans    &trans    &trans    &trans    &trans   &trans    &to 0    &trans    &trans   &trans   &trans    &trans  &trans    
+                 &trans    &trans    &kp SPACE  &trans    &trans    &trans    &trans    &trans    &trans    
+            >;
+
+            sensor-bindings = 
+                <&inc_dec_kp DOT COMMA>, 
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+        };
+
         lower_layer {
             label = "lower";
             display-name = "lower";
             bindings = <
+<<<<<<< Updated upstream
 &kp GRAVE        &kp F1   &kp F2    &kp F3   &kp F4       &kp F5                       &kp F6    &kp F7    &kp F8  &kp F9  &kp F10  &kp F11
 &trans           &trans   &trans    &trans   &trans       &kp P                        &trans    &trans    &trans  &trans  &trans   &kp F12
 &trans           &unsolo  &kp M     &kp DEL  &kp COMMA    &kp DOT                      &trans    &trans    &trans  &trans  &trans   &trans
 &cmt LSHFT SEMI  &trans   &kp BSLH  &trans   &shiftcomma  &shiftdot  &trans    &trans  &kp LBKT  &kp RBKT  &trans  &trans  &trans   &trans
                           &trans    &trans   &trans       &trans     &trans    &trans  &trans    &trans    &trans  &trans
+=======
+&kp GRAVE       &kp F1    &kp F2    &kp F3      &kp F4    &kp F5                    &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &kp F11
+&trans          &trans    &trans    &trans      &trans    &kp P                     &trans    &trans    &trans    &trans    &trans    &kp F12
+&trans          &unsolo   &kp M     &kp DEL     &kp COMMA &kp DOT                   &trans    &trans    &trans    &trans    &trans    &trans    
+&cmt LSHFT SEMI &trans    &kp BSLH  &trans      &kp LBRC  &kp RBRC  &trans   &trans &kp LBKT  &kp RBKT  &trans    &trans    &trans    &trans   
+                          &trans    &trans      &trans    &trans    &trans   &trans &trans    &to 0     &to 2     &trans
+>>>>>>> Stashed changes
             >;
 
             sensor-bindings =
